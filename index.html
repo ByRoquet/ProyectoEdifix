@@ -1,15 +1,710 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>EDIFIX PROYECT - Sistema de Reportes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        nav {
+            background-color: var(--primary);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-menu li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .nav-menu a.active {
+            background-color: var(--secondary);
+        }
+        
+        .main-content {
+            display: flex;
+            margin: 2rem 0;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-right: 2rem;
+        }
+        
+        .content-area {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--secondary);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .upload-area:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .file-item:last-child {
+            border-bottom: none;
+        }
+        
+        .file-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .file-icon {
+            margin-right: 1rem;
+            color: var(--secondary);
+        }
+        
+        .file-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            color: var(--dark);
+            transition: color 0.3s;
+        }
+        
+        .file-actions button:hover {
+            color: var(--secondary);
+        }
+        
+        .file-actions .delete-btn:hover {
+            color: var(--accent);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .commandments-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .commandment-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .commandment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .commandment-number {
+            background-color: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .commandment-title {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            font-family: 'Source Code Pro', monospace;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+            
+            .commandments-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                margin-top: 1rem;
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-menu li {
+                margin: 0.25rem 0;
+                width: 100%;
+            }
+            
+            .nav-menu a {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>BULDWARE SOLUTIONS - EDIFIX</h1>
+        </div>
+    </header>
     
-
-
-
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <span style="color: white; font-weight: bold;">Sistema de Reportes</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="active" data-section="report-section"><i class="fas fa-plus-circle"></i> Nuevo Reporte</a></li>
+                <li><a href="#" data-section="files-section"><i class="fas fa-folder-open"></i> Archivos</a></li>
+                <li><a href="#" data-section="guide-section"><i class="fas fa-book"></i> Guía</a></li>
+                <li><a href="#" data-section="history-section"><i class="fas fa-history"></i> Historial</a></li>
+            </ul>
+        </div>
+    </nav>
     
+    <main class="container main-content">
+        <aside class="sidebar">
+            <h3 class="section-title">Mis Reportes</h3>
+            <ul class="file-list" id="reports-list">
+                <!-- Los reportes se cargarán dinámicamente aquí -->
+                <li class="file-item">
+                    <div class="file-info">
+                        <i class="fas fa-file-alt file-icon"></i>
+                        <span>Reporte_001</span>
+                    </div>
+                    <div class="file-actions">
+                        <button class="edit-btn" title="Editar"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" title="Eliminar"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="file-item">
+                    <div class="file-info">
+                        <i class="fas fa-file-alt file-icon"></i>
+                        <span>Reporte_002</span>
+                    </div>
+                    <div class="file-actions">
+                        <button class="edit-btn" title="Editar"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" title="Eliminar"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+        
+        <section class="content-area">
+            <!-- Sección de Nuevo Reporte -->
+            <div id="report-section" class="content-section">
+                <h2 class="section-title">Nuevo Reporte de Mantenimiento</h2>
+                <form id="report-form">
+                    <div class="form-group">
+                        <label for="report-title">Título del Reporte</label>
+                        <input type="text" id="report-title" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="report-description">Descripción del Problema</label>
+                        <textarea id="report-description" class="form-control" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="report-steps">Pasos para Reproducir</label>
+                        <textarea id="report-steps" class="form-control"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="report-environment">Entorno</label>
+                        <textarea id="report-environment" class="form-control" placeholder="Navegador, SO, versión de Node.js, etc."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Archivos Adjuntos</label>
+                        <div class="upload-area" id="upload-area">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <p>Arrastra y suelta archivos aquí o haz clic para seleccionar</p>
+                            <input type="file" id="file-input" multiple style="display: none;">
+                        </div>
+                        <ul class="file-list" id="attachments-list">
+                            <!-- Los archivos adjuntos aparecerán aquí -->
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Enviar Reporte</button>
+                        <button type="button" class="btn" id="save-draft"><i class="fas fa-save"></i> Guardar Borrador</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Sección de Archivos -->
+            <div id="files-section" class="content-section hidden">
+                <h2 class="section-title">Gestión de Archivos</h2>
+                <div class="upload-area">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <p>Arrastra y suelta archivos aquí o haz clic para seleccionar</p>
+                    <input type="file" id="files-input" multiple style="display: none;">
+                </div>
+                <ul class="file-list" id="files-list">
+                    <!-- Los archivos subidos aparecerán aquí -->
+                    <li class="file-item">
+                        <div class="file-info">
+                            <i class="fas fa-file-code file-icon"></i>
+                            <span>script.js</span>
+                        </div>
+                        <div class="file-actions">
+                            <button class="download-btn" title="Descargar"><i class="fas fa-download"></i></button>
+                            <button class="delete-btn" title="Eliminar"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <i class="fas fa-file-image file-icon"></i>
+                            <span>error-screenshot.png</span>
+                        </div>
+                        <div class="file-actions">
+                            <button class="download-btn" title="Descargar"><i class="fas fa-download"></i></button>
+                            <button class="delete-btn" title="Eliminar"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Sección de Guía -->
+            <div id="guide-section" class="content-section hidden">
+                <h2 class="section-title">Guía para Reportes de Mantenimiento</h2>
+                <section class="commandments-container">
+                    <article class="commandment-card">
+                        <div class="commandment-number">1</div>
+                        <h3 class="commandment-title">Incluir contexto claro</h3>
+                        <p>Describe el problema con suficiente detalle, incluyendo lo que esperabas que sucediera y lo que realmente ocurrió.</p>
+                        <div class="code-block">
+                            // Mal: "No funciona"<br>
+                            // Bien: "Al hacer clic en el botón de enviar, el formulario no se envía y no aparece ningún mensaje de error"
+                        </div>
+                    </article>
+                    
+                    <article class="commandment-card">
+                        <div class="commandment-number">2</div>
+                        <h3 class="commandment-title">Proporcionar pasos para reproducir</h3>
+                        <p>Enumera los pasos específicos para que otro desarrollador pueda reproducir el problema.</p>
+                        <div class="code-block">
+                            1. Ir a la página de contacto<br>
+                            2. Rellenar todos los campos excepto el email<br>
+                            3. Hacer clic en "Enviar"<br>
+                            4. Observar: No hay validación ni mensaje de error
+                        </div>
+                    </article>
+                    
+                    <article class="commandment-card">
+                        <div class="commandment-number">3</div>
+                        <h3 class="commandment-title">Incluir código relevante</h3>
+                        <p>Proporciona el fragmento de código donde ocurre el problema, usando bloques de código formateados.</p>
+                        <div class="code-block">
+                            // Función con el problema:<br>
+                            function validateForm() {<br>
+                            &nbsp;&nbsp;const email = document.getElementById('email').value;<br>
+                            &nbsp;&nbsp;// Falta validación de campo vacío<br>
+                            &nbsp;&nbsp;if(!isValidEmail(email)) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;showError('Email inválido');<br>
+                            &nbsp;&nbsp;}<br>
+                            }
+                        </div>
+                    </article>
+                    
+                    <article class="commandment-card">
+                        <div class="commandment-number">4</div>
+                        <h3 class="commandment-title">Mencionar el entorno</h3>
+                        <p>Especifica navegador, versión de Node.js, sistema operativo y cualquier dependencia relevante.</p>
+                        <div class="code-block">
+                            Navegador: Chrome 98.0.4758.102 (64-bit)<br>
+                            OS: Windows 10 Pro 21H2<br>
+                            Dependencias: React 17.0.2, Formik 2.2.9
+                        </div>
+                    </article>
+                    
+                    <article class="commandment-card">
+                        <div class="commandment-number">5</div>
+                        <h3 class="commandment-title">Incluir mensajes de error</h3>
+                        <p>Si hay errores en la consola, inclúyelos completos, no solo "hubo un error".</p>
+                        <div class="code-block">
+                            Uncaught TypeError: Cannot read properties of null (reading 'value')<br>
+                            &nbsp;&nbsp;at validateForm (form.js:25)<br>
+                            &nbsp;&nbsp;at HTMLButtonElement.onclick (index.html:42)
+                        </div>
+                    </article>
+                    
+                    <article class="commandment-card">
+                        <div class="commandment-number">6</div>
+                        <h3 class="commandment-title">Adjuntar capturas cuando sea útil</h3>
+                        <p>Una imagen puede mostrar el problema visual o el flujo donde ocurre.</p>
+                        <div class="code-block">
+                            [Captura del formulario con campo vacío]<br>
+                            [Captura de la consola con el error]
+                        </div>
+                    </article>
+                    
+                    <article class="commandment-card">
+                        <div class="commandment-number">7</div>
+                        <h3 class="commandment-title">Documentar intentos de solución</h3>
+                        <p>Menciona lo que ya intentaste para resolver el problema.</p>
+                        <div class="code-block">
+                            - Verifiqué que el elemento con id 'email' existe en el DOM<br>
+                            - Intenté cambiar el selector por querySelector<br>
+                            - Probé en otro navegador con los mismos resultados
+                        </div>
+                    </article>
+                </section>
+            </div>
+            
+            <!-- Sección de Historial -->
+            <div id="history-section" class="content-section hidden">
+                <h2 class="section-title">Historial de Reportes</h2>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Buscar reportes...">
+                </div>
+                <ul class="file-list">
+                    <li class="file-item">
+                        <div class="file-info">
+                            <i class="fas fa-file-alt file-icon"></i>
+                            <div>
+                                <strong>Error en validación de formulario</strong><br>
+                                <small>Enviado el 15/06/2023 - Estado: Pendiente</small>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <button class="view-btn" title="Ver"><i class="fas fa-eye"></i></button>
+                            <button class="edit-btn" title="Editar"><i class="fas fa-edit"></i></button>
+                        </div>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <i class="fas fa-file-alt file-icon"></i>
+                            <div>
+                                <strong>Problema con API de autenticación</strong><br>
+                                <small>Enviado el 10/06/2023 - Estado: Resuelto</small>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <button class="view-btn" title="Ver"><i class="fas fa-eye"></i></button>
+                            <button class="edit-btn" title="Editar"><i class="fas fa-edit"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 BULDWARE SOLUTIONS - EDIFIX</p>
+            <p>Sistema de Reportes de Mantenimiento</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navegación entre secciones
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remover clase active de todos los enlaces
+                document.querySelectorAll('.nav-menu a').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Agregar clase active al enlace clickeado
+                this.classList.add('active');
+                
+                // Ocultar todas las secciones
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+                
+                // Mostrar la sección correspondiente
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.remove('hidden');
+            });
+        });
+        
+        // Manejo de subida de archivos
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('file-input');
+        const attachmentsList = document.getElementById('attachments-list');
+        
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileInput.addEventListener('change', handleFiles);
+        
+        function handleFiles() {
+            const files = fileInput.files;
+            if (files.length > 0) {
+                attachmentsList.innerHTML = '';
+                
+                for (let i = 0; i < files.length; i++) {
+                    const fileItem = document.createElement('li');
+                    fileItem.className = 'file-item';
+                    
+                    fileItem.innerHTML = `
+                        <div class="file-info">
+                            <i class="fas fa-file-alt file-icon"></i>
+                            <span>${files[i].name}</span>
+                        </div>
+                        <div class="file-actions">
+                            <button class="delete-btn" title="Eliminar"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `;
+                    
+                    attachmentsList.appendChild(fileItem);
+                }
+            }
+        }
+        
+        // Manejo del formulario
+        const reportForm = document.getElementById('report-form');
+        
+        reportForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Reporte enviado con éxito');
+            this.reset();
+            attachmentsList.innerHTML = '';
+        });
+        
+        // Guardar borrador
+        document.getElementById('save-draft').addEventListener('click', function() {
+            alert('Borrador guardado');
+        });
+        
+        // Manejo de archivos en la sección de archivos
+        const filesInput = document.getElementById('files-input');
+        const filesList = document.getElementById('files-list');
+        
+        document.querySelector('#files-section .upload-area').addEventListener('click', () => {
+            filesInput.click();
+        });
+        
+        filesInput.addEventListener('change', function() {
+            const files = this.files;
+            if (files.length > 0) {
+                for (let i = 0; i < files.length; i++) {
+                    const fileItem = document.createElement('li');
+                    fileItem.className = 'file-item';
+                    
+                    fileItem.innerHTML = `
+                        <div class="file-info">
+                            <i class="fas fa-file-alt file-icon"></i>
+                            <span>${files[i].name}</span>
+                        </div>
+                        <div class="file-actions">
+                            <button class="download-btn" title="Descargar"><i class="fas fa-download"></i></button>
+                            <button class="delete-btn" title="Eliminar"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `;
+                    
+                    filesList.appendChild(fileItem);
+                }
+            }
+        });
+        
+        // Delegación de eventos para botones de eliminar
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-btn') {
+                const fileItem = e.target.closest('.file-item');
+                if (fileItem) {
+                    fileItem.remove();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
