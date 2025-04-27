@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Gotham Book";
+}
+
+body {
+    background-color: rgb(179, 179, 179);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
+.contenedor-login {
+    background-color: white;
+    width: 500px;
+    height: 650px;
+    margin-top: 320px;
+    padding: 40px 30px;
+    border-radius: 30px;
+    box-shadow: 30px 30px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.contenedor-login img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.contenedor-login h2 {
+    font-size: 40px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.form-login {
+    position: relative;
+    width: 80%;
+    margin: 40px auto;
+}
+
+.form-login input {
+    width: 100%;
+    padding: 12px 35px 12px 5px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 2px solid #aaa;
+    outline: none;
+    background: none;
+}
+
+.form-login .mostrarContraseña {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer; 
+    user-select: none;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-login label {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    color: #aaa;
+    font-size: 20px;
+    transition: 0.3s ease all;
+    pointer-events: none;
+}
+
+.form-login input:focus + label, .form-login input:not(:placeholder-shown) + label {
+    top: -20px;
+    font-size: 16px;
+    color: black;
+}
+
+.contenedor-login button {
+    width: 50%;
+    height: 70px;
+    padding: 14px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 22px;
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.contenedor-login button:hover {
+    transform: translateY(-5px);
+    box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+}
