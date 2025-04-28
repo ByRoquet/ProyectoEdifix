@@ -1,5 +1,26 @@
 {
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
     "mongodb": "^6.16.0"
-  }
+  },
+  "name": "proyectoedifix",
+  "version": "1.0.0",
+  "description": "Proyecto Edith gg papa llamen a dios\r Ahuevin",
+  "main": "conexionMongo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ByRoquet/ProyectoEdifix.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ByRoquet/ProyectoEdifix/issues"
+  },
+  "homepage": "https://github.com/ByRoquet/ProyectoEdifix#readme"
 }
