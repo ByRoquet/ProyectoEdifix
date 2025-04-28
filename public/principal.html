@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDIFIX</title>
+    <link rel="stylesheet" href="principal.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    
+    <header>
+        <div>
+            <h1 class="headerTitulo">Sistema de Reportes de Mantenimiento</h1>
+        </div>
+    </header>
+
+    <div class="contenedor-menu">
+        <div class="izquierda">
+            <button class="boton" id="btnCerrarSesion">Cerrar Sesión</button>
+        </div>
+    
+        <div class="centro">
+            <button class="boton activo" data-section="nuevoReporte">Nuevo Reporte</button>
+            <button class="boton" data-section="borradores">Borradores</button>
+            <button class="boton" data-section="buscarReporte">Buscar Reportes</button>
+            <button class="boton" data-section="guia">Guía</button>
+        </div>
+    
+        <div class="derecha">
+            <button class="boton" data-section="usuarios">Agregar Usuarios</button>
+        </div>
+    </div>
+
+    <!--NUEVO REPORTE-->
+    <div id="principal">
+        <div id="nuevoReporte" class="seccion activo">
+            <div class="imgArriba">
+                <img src="/imagenesPrincipal/membreteArriba.jpg">
+            </div>
+
+            <form class="formulario">
+                <h2>Solicitud de Servicio FO-205P12203-05</h2>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label>Fecha de solicitud:</label>
+                        <input type="date" name="fecha_solicitud">
+                    </div>
+                    <div class="campo">
+                        <label>Fecha compromiso:</label>
+                        <input type="date" name="fecha_compromiso">
+                    </div>
+                    <div class="campo">
+                        <label>Fecha de realización:</label>
+                        <input type="date" name="fecha_realizacion">
+                    </div>
+                    <div class="campo">
+                        <label>No. Orden:</label>
+                        <input type="text" name="no_orden">
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label>Solicitado por:</label>
+                        <input type="text" value="M en ATI Rocío Ortega Jiménez">
+                    </div>
+                    <div class="campo">
+                        <label>Área solicitante:</label>
+                        <input type="text" value="Ingeniería en Sistemas Computacionales">
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label>Justificación:</label>
+                    <textarea rows="3">Mantenimiento al edificio "C".</textarea>
+                </div>
+
+                <div class="campo">
+                    <label>Servicio solicitado:</label>
+                    <textarea rows="5"></textarea>
+                </div>
+
+                <div class="campo">
+                    <label>Material Utilizado:</label>
+                    <textarea rows="4"></textarea>
+                </div>
+
+                <h3>Firmas</h3>
+                <div class="firmas">
+                    <div class="firmasBloque">
+                        <div class="nombreFirma">Solicitante</div>
+                        <div class="cuadroFirma"></div>
+                        <div class="nombreFirma">M en ATI Rocio Ortega Jimenez</div>
+                        <div class="nombreFirma">Encargada de la Jefatura de la Carrera de Ingenieria en Sistemas Computacionales</div>
+                    </div>
+                    <div class="firmasBloque">
+                        <div class="nombreFirma">VoBo.</div>
+                        <div class="cuadroFirma"></div>
+                        <div class="nombreFirma">Mtro. Arturo Roman Lopez</div>
+                        <div class="nombreFirma">Subdireccion de Administracion</div>
+                    </div>
+                    <div class="firmasBloque">
+                        <div class="nombreFirma">Autorizo:</div>
+                        <div class="cuadroFirma"></div>
+                        <div class="nombreFirma">Dr. Luis Geovani Velazquez Luna</div>
+                        <div class="nombreFirma">Direccion de Planeacion y Administracion</div>
+                    </div>
+                </div>
+
+                <div class="filaFinal">
+                    <div class="firmasBloque">
+                        <div class="nombreFirma">Recibi Servicio Solicitado:</div>
+                        <div class="cuadroFirma"></div>
+                        <div class="nombreFirma">Ing. Nadia Angelly Gonzalez Gomez</div>
+                        <div class="nombreFirma">Jefa del Departamento de Recursos Materiales y Servicios Generales</div>
+                    </div>
+                    <div class="evaluacionServicio">
+                        <p><strong>FAVOR DE MARCAR CON “X” SI EL SERVICIO REALIZADO FUE:</strong></p>
+                        <label><input type="checkbox" name="satisfactorio"> SATISFACTORIO</label>
+                        <label><input type="checkbox" name="no_satisfactorio"> NO SATISFACTORIO</label>
+                    </div>
+                </div>
+
+                <div class="botonesReporte">
+                    <button type="button" id="btnGuardarBorrador" class="accionBotonReporte">Guardar Borrador</button>
+                    <button type="button" id="btnEnviarReporte" class="accionBotonReporte">Enviar</button>
+                </div>                
+            </form>
+
+            <div class="imgAbajo">
+                <img src="/imagenesPrincipal/membreteAbajo.png">
+            </div>
+        </div>
+    </div>
+
+    <!--GUARDAR BORRADOR-->
+    <div id="guardarBorrador" class="ventanaGuardarBorrador">
+        <div class="contenidoGuardarBorrador">
+            <h2>¿Estás seguro de que deseas guardar como Borrador este Reporte?</h2>
+            <div class="botones">
+                <button id="btnConfirmarGuardado" class="confirmar">Sí, guardar</button>
+                <button id="btnCancelarGuardado" class="cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!--ENVIAR REPORTE-->
+    <div id="enviarReporte" class="ventanaEnviarReporte">
+        <div class="contenidoEnviarReporte">
+            <h2>¿Estás seguro de que deseas enviar el Reporte?</h2>
+            <div class="botones">
+                <button id="btnConfirmarEnvio" class="confirmar">Sí, enviar</button>
+                <button id="btnCancelarEnvio" class="cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!--AGREGAR USUARIOS-->
+    <div id="usuarios" class="seccion">
+        <form class="formularioAgregarUsuarios">
+            <h2>Agregar Nuevo Usuario</h2>
+        
+            <div class="contenedorUsuarios">
+                <div>
+                    <div class="campoUsuarios">
+                        <label>Nombre(s):</label>
+                        <input type="text" placeholder="">
+                    </div>
+        
+                    <div class="campoUsuarios">
+                        <label>Apellidos:</label>
+                        <input type="text" placeholder="">
+                    </div>
+                    
+                    <div class="campoUsuarios">
+                        <label>Nombre de usuario:</label>
+                        <input type="text" placeholder="">
+                    </div>
+
+                    <div class="campoUsuarios">
+                        <label>Contraseña</label>
+                        <input type="password" placeholder="">
+                    </div>
+        
+                    
+                </div>
+
+                <div class="campoTipoUsuarios">
+                    <label>Tipo de usuario:</label>
+                    <div class="tipoUsuario">
+                        <label><input type="checkbox" name="tipo">Administrativo</label>
+                        <label><input type="checkbox" name="tipo">Servicio Social</label>
+                    </div>
+                </div>
+
+            </div>
+        
+            <div class="botonesUsuarios">
+                <button type="button" id="btnGuardarUsuario" class="boton">Guardar Usuario</button>
+                <button type="reset" class="boton">Limpiar</button>
+            </div>
+        </form>
+    </div>
+        
+    <!--GUARDAR USUARIO-->
+    <div id="guardarUsuario" class="ventanaGuardarUsuario">
+        <div class="contenidoGuardarUsuario">
+            <h2>¿Estás seguro de Registrar a este usuario?</h2>
+            <div class="botones">
+                <button id="btnConfirmarUsuario" class="confirmar">Sí, registrar</button>
+                <button id="btnCancelarUsuario" class="cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!--BORRADORES-->
+    <div id="borradores" class="seccion">
+        <div class="contenedorBorradores">
+            <h2>Borradores Guardados</h2>
+            
+            <div class="tarjetas">
+
+                <div class="tarjetaBorrador" data-id="1">
+                    <div class="infoBorrador">
+                        <span class="fechaBorrador">22-abril-2025</span>
+                        <span class="numerOrdenBorrador">1567823324</span>
+                    </div>
+                    <div class="accionesBorrador">
+                        <button class="botonVerBorrador">Ver</button>
+                        <button class="botonEliminarBorrador">Eliminar</button>
+                    </div>
+                </div>
+
+                <div class="tarjetaBorrador" data-id="2">
+                    <div class="infoBorrador">
+                        <span class="fechaBorrador">22-abril-2025</span>
+                        <span class="numerOrdenBorrador">23354533</span>
+                    </div>
+                    <div class="accionesBorrador">
+                        <button class="botonVerBorrador">Ver</button>
+                        <button class="botonEliminarBorrador">Eliminar</button>
+                    </div>
+                </div>
+
+                <div class="tarjetaBorrador" data-id="3">
+                    <div class="infoBorrador">
+                        <span class="fechaBorrador">22-abril-2025</span>
+                        <span class="numerOrdenBorrador">23243545</span>
+                    </div>
+                    <div class="accionesBorrador">
+                        <button class="botonVerBorrador">Ver</button>
+                        <button class="botonEliminarBorrador">Eliminar</button>
+                    </div>
+                </div>
+
+                <div class="tarjetaBorrador" data-id="4">
+                    <div class="infoBorrador">
+                        <span class="fechaBorrador">22-abril-2025</span>
+                        <span class="numerOrdenBorrador">23243545</span>
+                    </div>
+                    <div class="accionesBorrador">
+                        <button class="botonVerBorrador">Ver</button>
+                        <button class="botonEliminarBorrador">Eliminar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- GUIA -->
+    <div id="guia" class="seccion">
+        <div class="contenedorGuia">
+            <h2>Guía del Sistema de Control de Mantenimiento</h2>
+
+            <div class="seccionGuia">
+                <div class="textoGuia">
+                    <h3>1. Cerrar Sesión</h3>
+                    <div class="linea"></div>
+                    <p>Para cerrar sesion de manera segura haz clic en el boton que dice "Cerrar Sesion", 
+                        este boton te preguntra si realmente deseas salir, si le das a la opcion que dice 
+                        "si, cerrar sesion" te regresara al login, de lo contrario permaneceras en el 
+                        sistema.
+                    </p>
+                </div>
+                <div class="imagenGuia">
+                    <img src="/imagenesPrincipal/cerrar-sesion.png" alt="Cerrar sesión">
+                </div>
+            </div>
+
+            <div class="seccionGuia">
+                <div class="textoGuia">
+                    <h3>2. Nuevo Reporte</h3>
+                    <div class="linea"></div>
+                    <p>En este apartado podras generar un Nuevo Reporte desde 0, este partado tiene 2 botones, 
+                        los cuales son los de "Guardar Borrador" y "Enviar", si seleccionas el de Enviar 
+                        todos los campos los tienes que llenar de manera obligatoria, si le das en el de 
+                        Guardar Borrador el sistema lo guardara hasta los datos que llenaste y podras modificarlo 
+                        o terminarlo y enviarlo despues.</p>
+                </div>
+                <div class="imagenGuia">
+                    <img src="/imagenesPrincipal/nuevo-reporte.png" alt="Nuevo reporte">
+                </div>
+            </div>
+
+            <div class="seccionGuia">
+                <div class="textoGuia">
+                    <h3>3. Borradores</h3>
+                    <div class="linea"></div>
+                    <p>En este apartado podras encontrar todos los Borradores que tengas, estos contendran la 
+                        fecha en la que se guardo el Borrador y su numero de orden. Asi mismo contendra 2 
+                        botones que si seleccionamos el de "Ver" nos abrira el reporte hasta donde lo llenamos 
+                        y si le damos en el otro boton que es "Eliminar" eliminara el reporte, pero esta opcion
+                        solo estara habilitada para Administrativos.
+                    </p>
+                </div>
+                <div class="imagenGuia">
+                    <img src="/imagenesPrincipal/borradores.png" alt="Borradores">
+                </div>
+            </div>
+
+            <div class="seccionGuia">
+                <div class="textoGuia">
+                    <h3>4. Buscar Reportes</h3>
+                    <div class="linea"></div>
+                    <p>En esta seccion podemos buscar reportes de manera especifica, se puede buscar por 
+                        rango de fecha, por orden de agregado (Mas antiguos primero o Mas recientes primero), 
+                        por reportes que estan pendientes o reportes que estan completados y por palabras 
+                        clave en una barra de busqueda.
+                    </p>
+                </div>
+                <div class="imagenGuia">
+                    <img src="/imagenesPrincipal/pendientes.png" alt="Reportes pendientes">
+                </div>
+            </div>
+
+            <div class="seccionGuia">
+                <div class="textoGuia">
+                    <h3>5. Agregar Usuarios</h3>
+                    <div class="linea"></div>
+                    <p>En esta ultima seccion se pueden agregar usuarios. Para agregar usuarios solo lo podran 
+                        hacer Administrativos y para hacerlo deberan de llenar todos los campos que se piden.
+                    </p>
+                </div>
+                <div class="imagenGuia">
+                    <img src="/imagenesPrincipal/agregar-usuarios.png" alt="Agregar usuarios">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--CERRAR SESION-->
+    <div id="cerrarSesion" class="ventanaCerrarSesion">
+        <div class="contenidoCerrarSesion">
+            <h2>¿Deseas cerrar sesión?</h2>
+            <p>Regresaras al menu de inicio de sesion.</p>
+            <div class="botones">
+                <button id="btnConfirmarCerrar" class="confirmar">Sí, cerrar sesión</button>
+                <button id="btnCancelarCerrar" class="cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUSCAR REPORTES -->
+    <div id="buscarReporte" class="seccion">
+        <div class="contenedorBusqueda">
+            <h2> Buscar Reportes</h2>
+            
+            <!-- Barra de búsqueda principal -->
+            <div class="grupoBusqueda">
+                <div class="barraBusqueda">
+                    <input type="text" placeholder="Buscar por palabras clave">
+                    <button class="btnBuscarPalabraClave">Buscar</button>
+                </div>
+            </div>
+            
+            <!-- Filtros desplegables -->
+            <div class="contenedorFiltros">
+                <!-- Filtro por fecha -->
+                <details class="filtro" name="grupoFiltros">
+                    <summary>Rango de fecha
+                        <span class="filtroSeleccionado">Este mes</span>
+                    </summary>
+                    <div class="opcionesFiltro">
+                        <label><input type="radio" name="fecha" checked> Hoy</label>
+                        <label><input type="radio" name="fecha"> Esta semana</label>
+                        <label><input type="radio" name="fecha"> Este mes</label>
+                        <label><input type="radio" name="fecha"> Personalizado</label>
+                        <div class="rangoPersonalizado">
+                            <input type="date">
+                            <span>a</span>
+                            <input type="date">
+                        </div>
+                    </div>
+                </details>
+                
+                <!-- Filtro por orden -->
+                <details class="filtro" name="grupoFiltros">
+                    <summary>Ordenar por
+                        <span class="filtroSeleccionado">Más recientes</span>
+                    </summary>
+                    <div class="opcionesFiltro">
+                        <label><input type="radio" name="orden" checked> Más recientes primero</label>
+                        <label><input type="radio" name="orden"> Más antiguos primero</label>
+                    </div>
+                </details>
+                
+                <!-- Filtro por estado -->
+                <details class="filtro" name="grupoFiltros">
+                    <summary>Estado
+                        <span class="filtroSeleccionado">Todos</span>
+                    </summary>
+                    <div class="opcionesFiltro">
+                        <label><input type="radio" name="estado" checked> Todos</label>
+                        <label><input type="radio" name="estado"> Solo pendientes</label>
+                        <label><input type="radio" name="estado"> Solo completados</label>
+                    </div>
+                </details>
+            </div>
+            
+            <!-- Resultados -->
+            <div class="resultados">
+                <div class="tituloResultados">
+                    <h3>Reportes Encontrados</h3>
+                </div>
+                
+                <div class="listaReportes">
+                    <!-- Reporte 1 -->
+                    <article class="reporte">
+                        <div class="reporteArriba">
+                            <span class="estado completado">Completado</span>
+                            <span class="fechaBuscar">15 May 2023</span>
+                        </div>
+                        <h4>Mantenimiento eléctrico - Edificio C</h4>
+                        <p class="codigo">FO-205P12203-05</p>
+                        <div class="reporteAcciones">
+                            <button class="botonAccion">Ver detalles
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <!-- Reporte 2 -->
+                    <article class="reporte pendiente">
+                        <div class="reporteArriba">
+                            <span class="estado pendiente">Pendiente</span>
+                            <span class="fechaBuscar">18 May 2023</span>
+                        </div>
+                        <h4>Reparación de ventanas - Edificio A</h4>
+                        <p class="codigo">FO-205P12203-06</p>
+                        <div class="reporteAcciones">
+                            <button class="botonAccion">Ver detalles
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="principal.js"></script>
+</body>
+</html>
