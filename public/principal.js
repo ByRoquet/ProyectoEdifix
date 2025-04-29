@@ -86,3 +86,22 @@ btnConfirmarUsuario.addEventListener('click', () => {
 btnCancelarUsuario.addEventListener('click', () => {
     guardarUsuario.style.display = 'none';  
 });
+
+//Botón de Imprimir
+const btnImprimirReporte = document.getElementById('btnImprimirReporte');
+const imprimirReporte = document.getElementById('imprimirReporte');
+const btnConfirmarImpresion = document.getElementById('btnConfirmarImpresion');
+const btnCancelarImpresion = document.getElementById('btnCancelarImpresion');
+
+btnImprimirReporte.addEventListener('click', () => {
+    imprimirReporte.style.display = 'flex';
+});
+
+btnCancelarImpresion.addEventListener('click', () => {
+    imprimirReporte.style.display = 'none';
+});
+
+btnConfirmarImpresion.addEventListener('click', () => {
+    window.print();
+    imprimirReporte.style.display = 'none';
+});
