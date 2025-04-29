@@ -12,37 +12,19 @@ app.use(bodyParser.json());
 const uri = "mongodb+srv://ByRoquet:BOtCKlnzlQWiRV69@cluster0.qleg1my.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const client = new MongoClient(uri);
 
-// Ruta de login
-app.post('/login', async (req, res) => {
-    const { usuario, contra } = req.body;
-
+// Conectar a MongoDB al iniciar el servidor
+let db;
+async function connectToMongoDB() {
     try {
         await client.connect();
-        const db = client.db("proyectoedifix");
-        const usuarios = db.collection("usuarios");
-
-        // Buscar usuario por nombre de usuario
-        const usuarioEncontrado = await usuarios.findOne({ nombre: usuario });
-
-        if (usuarioEncontrado) {
-            // Comparar la contraseña ingresada con la almacenada en texto plano
-            if (contra === usuarioEncontrado.password) {
-                res.json({ success: true, message: "Inicio de sesión exitoso" });
-            } else {
-                res.json({ success: false, message: "Contraseña incorrecta" });
-            }
-        } else {
-            res.json({ success: false, message: "Usuario no encontrado" });
-        }
+        db = client.db("proyectoedifix");
+        console.log("Conectado a MongoDB");
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: "Error en el servidor" });
-    } finally {
-        await client.close();
+        console.error("Error al conectar a MongoDB:", error);
+        process.exit(1);
     }
-});
+}
+connectToMongoDB();
 
-// Iniciar servidor
-app.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
-});
+
+//Hola
