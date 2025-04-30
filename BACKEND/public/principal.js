@@ -88,6 +88,7 @@ btnCancelarUsuario.addEventListener('click', () => {
 });
 
 //Botón de Imprimir
+
 const btnImprimirReporte = document.getElementById('btnImprimirReporte');
 const imprimirReporte = document.getElementById('imprimirReporte');
 const btnConfirmarImpresion = document.getElementById('btnConfirmarImpresion');
