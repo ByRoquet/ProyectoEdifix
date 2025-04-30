@@ -106,3 +106,6 @@ btnConfirmarImpresion.addEventListener('click', () => {
     window.print();
     imprimirReporte.style.display = 'none';
 });
+
+
+//Huevos al hector
