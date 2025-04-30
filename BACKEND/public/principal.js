@@ -62,7 +62,7 @@ btnCerrar.addEventListener('click', () => {
 });
 
 btnConfirmarCerrar.addEventListener('click', () => {
-    window.location.href = '/login/login.html'; 
+    window.location.href = 'login.html';  // Ruta relativa desde principal.html
 });
 
 btnCancelarCerrar.addEventListener('click', () => {
