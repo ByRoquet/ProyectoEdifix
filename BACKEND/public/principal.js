@@ -87,8 +87,7 @@ btnCancelarUsuario.addEventListener('click', () => {
     guardarUsuario.style.display = 'none';  
 });
 
-//Botón de Imprimir
-
+// Botón de Imprimir
 const btnImprimirReporte = document.getElementById('btnImprimirReporte');
 const imprimirReporte = document.getElementById('imprimirReporte');
 const btnConfirmarImpresion = document.getElementById('btnConfirmarImpresion');
@@ -103,9 +102,14 @@ btnCancelarImpresion.addEventListener('click', () => {
 });
 
 btnConfirmarImpresion.addEventListener('click', () => {
+    const printStyle = document.createElement('style');
+    printStyle.textContent = `...`; 
+    document.head.appendChild(printStyle);
+    
     window.print();
-    imprimirReporte.style.display = 'none';
+    
+    setTimeout(() => {
+        document.head.removeChild(printStyle);
+        imprimirReporte.style.display = 'none';
+    }, 500);
 });
-
-
-//Huevos al hector

@@ -829,3 +829,20 @@ header {
     cursor: pointer;
     font-size: 16px;
 }
+
+/* Formato Organizado de Impresión */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    #nuevoReporte, #nuevoReporte * {
+        visibility: visible;
+    }
+    
+
+    @page {
+        size: A4;
+        margin: 1cm;
+    }
+}
