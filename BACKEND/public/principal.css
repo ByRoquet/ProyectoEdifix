@@ -265,7 +265,7 @@ header {
     font-size: 40px;
 }
 
-/*IMPRIMIR REPORTE*/
+  /*IMPRIMIR REPORTE*/
 .ventanaImprimirReporte {
     display: none;
     position: fixed;
@@ -828,6 +828,63 @@ header {
     color: #3498db;
     cursor: pointer;
     font-size: 16px;
+}
+
+/* ESTILOS PARA IMPRESION */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    #nuevoReporte,
+    #nuevoReporte * {
+        visibility: visible;
+    }
+    
+    #nuevoReporte {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .contenedor-menu,
+    .botonesReporte,
+    header {
+        display: none !important;
+    }
+    
+    .formulario {
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    input, textarea {
+        border: 1px solid #000 !important;
+        background: transparent !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .imgArriba, .imgAbajo {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .imgArriba img, .imgAbajo img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    input[type="checkbox"] {
+        appearance: checkbox !important;
+        -webkit-appearance: checkbox !important;
+    }
 }
 
 /* Formato Organizado de Impresión */
