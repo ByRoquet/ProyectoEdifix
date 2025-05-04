@@ -880,7 +880,8 @@ header {
         max-width: 100%;
         height: auto;
     }
-
+    
+    /* Asegurar que los checkboxes se vean */
     input[type="checkbox"] {
         appearance: checkbox !important;
         -webkit-appearance: checkbox !important;
