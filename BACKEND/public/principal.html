@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDIFIX</title>
+    <title>Pruebas-EDIFIX</title>
     <link rel="stylesheet" href="principal.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="principal.js" defer></script>
 </head>
 <body>
     
@@ -17,18 +18,42 @@
 
     <div class="contenedor-menu">
         <div class="izquierda">
-            <button class="boton" id="btnCerrarSesion">Cerrar Sesión</button>
+            <button class="boton" id="btnCerrarSesion">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front">Cerrar Sesión</span>
+            </button>
         </div>
     
         <div class="centro">
-            <button class="boton activo" data-section="nuevoReporte">Nuevo Reporte</button>
-            <button class="boton" data-section="borradores">Borradores</button>
-            <button class="boton" data-section="buscarReporte">Buscar Reportes</button>
-            <button class="boton" data-section="guia">Guía</button>
+            <button class="boton activo" data-section="nuevoReporte">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front">Nuevo Reporte</span>
+            </button>
+            <button class="boton" data-section="borradores">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front">Borradores</span>
+            </button>
+            <button class="boton" data-section="buscarReporte">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front">Buscar Reportes</span>
+            </button>
+            <button class="boton" data-section="guia">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front">Guía</span>
+            </button>
         </div>
     
         <div class="derecha">
-            <button class="boton" data-section="usuarios">Agregar Usuarios</button>
+            <button class="boton" data-section="usuarios">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front">Agregar Usuarios</span>
+            </button>
         </div>
     </div>
 
@@ -36,7 +61,7 @@
     <div id="principal">
         <div id="nuevoReporte" class="seccion activo">
             <div class="imgArriba">
-                <img src="/imagenesPrincipal/membreteArriba.jpg">
+                <img src="membretearriba.png">
             </div>
 
             <form class="formulario">
@@ -124,152 +149,211 @@
                 </div>
 
                 <div class="botonesReporte">
-                    <button type="button" id="btnGuardarBorrador" class="accionBotonReporte">Guardar Borrador</button>
-                    <button type="button" id="btnEnviarReporte" class="accionBotonReporte">Enviar</button>
-                    <button type="button" id="btnImprimirReporte" class="accionBotonReporte">Imprimir</button>
-                </div>                
+                    <button type="button" id="btnGuardarBorrador" class="accionBotonReporte">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front">Guardar Borrador</span>
+                    </button>
+                    <button type="button" id="btnEnviarReporte" class="accionBotonReporte">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front">Enviar</span>
+                    </button>
+                    <button type="button" id="btnImprimirReporte" class="accionBotonReporte">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front">Imprimir</span>
+                    </button>
+                </div>             
             </form>
 
             <div class="imgAbajo">
-                <img src="/imagenesPrincipal/membreteAbajo.png">
+                <img src="membreteabajo.png">
             </div>
         </div>
     </div>
 
     <!--GUARDAR BORRADOR-->
     <div id="guardarBorrador" class="ventanaGuardarBorrador">
-        <div class="contenidoGuardarBorrador">
-            <h2>¿Estás seguro de que deseas guardar como Borrador este Reporte?</h2>
-            <div class="botones">
-                <button id="btnConfirmarGuardado" class="confirmar">Sí, guardar</button>
-                <button id="btnCancelarGuardado" class="cancelar">Cancelar</button>
-            </div>
+    <div class="contenidoGuardarBorrador">
+        <h2>¿Estás seguro de que deseas guardar como Borrador este Reporte?</h2>
+        <p>Podrás recuperarlo más tarde desde la sección de Borradores</p>
+        
+        <div class="gb-botones">
+            <button id="btnConfirmarGuardado" class="gb-confirmar">
+                <span class="front">Sí, guardar</span>
+            </button>
+            <button id="btnCancelarGuardado" class="gb-cancelar">
+                <span class="front">Cancelar</span>
+            </button>
         </div>
     </div>
+</div>
 
     <!--ENVIAR REPORTE-->
-    <div id="enviarReporte" class="ventanaEnviarReporte">
-        <div class="contenidoEnviarReporte">
-            <h2>¿Estás seguro de que deseas enviar el Reporte?</h2>
+<div id="enviarReporte" class="ventanaEnviarReporte">
+    <div class="contenidoEnviarReporte">
+        <h2>¿Estás seguro de que deseas enviar el Reporte?</h2>
+        <p>El reporte se enviará a los destinatarios y no podrá ser modificado</p>
+        
+        <div class="er-botones">
+            <button id="btnConfirmarEnvio" class="er-confirmar">
+                <span class="front">Sí, enviar</span>
+            </button>
+            <button id="btnCancelarEnvio" class="er-cancelar">
+                <span class="front">Cancelar</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!--IMPRIMIR REPORTE-->
+    <div id="imprimirReporte" class="ventanaImprimirReporte" style="display:none;">
+        <div class="contenidoImprimirReporte">
+            <h2>¿Estás seguro de que deseas imprimir el reporte?</h2>
             <div class="botones">
-                <button id="btnConfirmarEnvio" class="confirmar">Sí, enviar</button>
-                <button id="btnCancelarEnvio" class="cancelar">Cancelar</button>
+                <button id="btnConfirmarImprimir" class="confirmar">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <span class="front">Sí, imprimir</span>
+                </button>
+                <button id="btnCancelarImprimir" class="cancelar">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <span class="front">Cancelar</span>
+                </button>
             </div>
         </div>
     </div>
 
     <!--AGREGAR USUARIOS-->
     <div id="usuarios" class="seccion">
-        <form class="formularioAgregarUsuarios">
-            <h2>Agregar Nuevo Usuario</h2>
+    <div class="contenedor-agregar-usuario">
+        <h2 class="titulo-agregar-usuario">Agregar Usuario</h2>
         
-            <div class="contenedorUsuarios">
-                <div>
-                    <div class="campoUsuarios">
-                        <label>Nombre(s):</label>
-                        <input type="text" placeholder="">
-                    </div>
+        <div class="campo-formulario">
+            <label for="nombre-usuario">Nombre de usuario</label>
+            <input type="text" id="nombre-usuario" placeholder="Ingrese nombre de usuario">
+        </div>
         
-                    <div class="campoUsuarios">
-                        <label>Apellidos:</label>
-                        <input type="text" placeholder="">
-                    </div>
-                    
-                    <div class="campoUsuarios">
-                        <label>Nombre de usuario:</label>
-                        <input type="text" placeholder="">
-                    </div>
-
-                    <div class="campoUsuarios">
-                        <label>Contraseña</label>
-                        <input type="password" placeholder="">
-                    </div>
+        <div class="campo-formulario">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" placeholder="Ingrese contraseña">
+        </div>
         
-                    
-                </div>
-
-                <div class="campoTipoUsuarios">
-                    <label>Tipo de usuario:</label>
-                    <div class="tipoUsuario">
-                        <label><input type="checkbox" name="tipo">Administrativo</label>
-                        <label><input type="checkbox" name="tipo">Servicio Social</label>
-                    </div>
-                </div>
-
-            </div>
+        <div class="mostrar-contrasena">
+            <input type="checkbox" id="mostrar-contrasena" onchange="mostrarContraseña()">
+            <label for="mostrar-contrasena">Mostrar contraseña</label>
+        </div>
         
-            <div class="botonesUsuarios">
-                <button type="button" id="btnGuardarUsuario" class="boton">Guardar Usuario</button>
-                <button type="reset" class="boton">Limpiar</button>
-            </div>
-        </form>
-    </div>
+        <div class="selector-rol">
+            <label for="rol-usuario">Rol</label>
+            <select id="rol-usuario">
+                <option value="">Seleccionar rol</option>
+                <option value="admin">Administrador</option>
+                <option value="servicio">Servicio Social</option>
+            </select>
+        </div>
         
-    <!--GUARDAR USUARIO-->
-    <div id="guardarUsuario" class="ventanaGuardarUsuario">
-        <div class="contenidoGuardarUsuario">
-            <h2>¿Estás seguro de Registrar a este usuario?</h2>
-            <div class="botones">
-                <button id="btnConfirmarUsuario" class="confirmar">Sí, registrar</button>
-                <button id="btnCancelarUsuario" class="cancelar">Cancelar</button>
-            </div>
+        <div class="contenedor-botones">
+            <button type="submit" class="boton-formulario boton-guardar">Guardar</button>
+            <button type="button" class="boton-formulario boton-cancelar">Cancelar</button>
         </div>
     </div>
+</div>
 
     <!--BORRADORES-->
-    <div id="borradores" class="seccion">
-        <div class="contenedorBorradores">
-            <h2>Borradores Guardados</h2>
-            
-            <div class="tarjetas">
-
-                <div class="tarjetaBorrador" data-id="1">
-                    <div class="infoBorrador">
-                        <span class="fechaBorrador">22-abril-2025</span>
-                        <span class="numerOrdenBorrador">1567823324</span>
+<div id="borradores" class="seccion">
+    <div class="contenedorBorradores">
+        <h2>Borradores Guardados</h2>
+        
+        <div class="tarjetas">
+            <div class="tarjetaBorrador" data-id="1">
+                <div class="infoBorrador">
+                    <div class="tituloBorrador">Documento de Propuesta</div>
+                    <div class="fechaBorrador">
+                        <span class="icono-calendario">📅</span>
+                        <span class="texto-fecha">22-abril-2025</span>
                     </div>
-                    <div class="accionesBorrador">
-                        <button class="botonVerBorrador">Ver</button>
-                        <button class="botonEliminarBorrador">Eliminar</button>
-                    </div>
+                    <span class="numerOrdenBorrador">ID: #1567823324</span>
                 </div>
-
-                <div class="tarjetaBorrador" data-id="2">
-                    <div class="infoBorrador">
-                        <span class="fechaBorrador">22-abril-2025</span>
-                        <span class="numerOrdenBorrador">23354533</span>
-                    </div>
-                    <div class="accionesBorrador">
-                        <button class="botonVerBorrador">Ver</button>
-                        <button class="botonEliminarBorrador">Eliminar</button>
-                    </div>
+                <div class="accionesBorrador">
+                    <button class="botonVerBorrador">
+                        <span class="icono-accion">👁️</span>
+                        <span class="texto-accion">Ver</span>
+                    </button>
+                    <button class="botonEliminarBorrador">
+                        <span class="icono-accion">🗑️</span>
+                        <span class="texto-accion">Eliminar</span>
+                    </button>
                 </div>
+            </div>
 
-                <div class="tarjetaBorrador" data-id="3">
-                    <div class="infoBorrador">
-                        <span class="fechaBorrador">22-abril-2025</span>
-                        <span class="numerOrdenBorrador">23243545</span>
+            <div class="tarjetaBorrador" data-id="2">
+                <div class="infoBorrador">
+                    <div class="tituloBorrador">Informe Mensual</div>
+                    <div class="fechaBorrador">
+                        <span class="icono-calendario">📅</span>
+                        <span class="texto-fecha">22-abril-2025</span>
                     </div>
-                    <div class="accionesBorrador">
-                        <button class="botonVerBorrador">Ver</button>
-                        <button class="botonEliminarBorrador">Eliminar</button>
-                    </div>
+                    <span class="numerOrdenBorrador">ID: #23354533</span>
                 </div>
-
-                <div class="tarjetaBorrador" data-id="4">
-                    <div class="infoBorrador">
-                        <span class="fechaBorrador">22-abril-2025</span>
-                        <span class="numerOrdenBorrador">23243545</span>
-                    </div>
-                    <div class="accionesBorrador">
-                        <button class="botonVerBorrador">Ver</button>
-                        <button class="botonEliminarBorrador">Eliminar</button>
-                    </div>
+                <div class="accionesBorrador">
+                    <button class="botonVerBorrador">
+                        <span class="icono-accion">👁️</span>
+                        <span class="texto-accion">Ver</span>
+                    </button>
+                    <button class="botonEliminarBorrador">
+                        <span class="icono-accion">🗑️</span>
+                        <span class="texto-accion">Eliminar</span>
+                    </button>
                 </div>
+            </div>
 
+            <div class="tarjetaBorrador" data-id="3">
+                <div class="infoBorrador">
+                    <div class="tituloBorrador">Presupuesto Q2</div>
+                    <div class="fechaBorrador">
+                        <span class="icono-calendario">📅</span>
+                        <span class="texto-fecha">22-abril-2025</span>
+                    </div>
+                    <span class="numerOrdenBorrador">ID: #23243545</span>
+                </div>
+                <div class="accionesBorrador">
+                    <button class="botonVerBorrador">
+                        <span class="icono-accion">👁️</span>
+                        <span class="texto-accion">Ver</span>
+                    </button>
+                    <button class="botonEliminarBorrador">
+                        <span class="icono-accion">🗑️</span>
+                        <span class="texto-accion">Eliminar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tarjetaBorrador" data-id="4">
+                <div class="infoBorrador">
+                    <div class="tituloBorrador">Reunión de Equipo</div>
+                    <div class="fechaBorrador">
+                        <span class="icono-calendario">📅</span>
+                        <span class="texto-fecha">22-abril-2025</span>
+                    </div>
+                    <span class="numerOrdenBorrador">ID: #23243545</span>
+                </div>
+                <div class="accionesBorrador">
+                    <button class="botonVerBorrador">
+                        <span class="icono-accion">👁️</span>
+                        <span class="texto-accion">Ver</span>
+                    </button>
+                    <button class="botonEliminarBorrador">
+                        <span class="icono-accion">🗑️</span>
+                        <span class="texto-accion">Eliminar</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
     <!-- GUIA -->
     <div id="guia" class="seccion">
@@ -287,7 +371,7 @@
                     </p>
                 </div>
                 <div class="imagenGuia">
-                    <img src="/imagenesPrincipal/cerrar-sesion.png" alt="Cerrar sesión">
+                    <img src="cerrarsesion.png" alt="Cerrar sesión">
                 </div>
             </div>
 
@@ -302,7 +386,7 @@
                         o terminarlo y enviarlo despues.</p>
                 </div>
                 <div class="imagenGuia">
-                    <img src="/imagenesPrincipal/nuevo-reporte.png" alt="Nuevo reporte">
+                    <img src="nuevoreporte.png" alt="Nuevo reporte">
                 </div>
             </div>
 
@@ -318,7 +402,7 @@
                     </p>
                 </div>
                 <div class="imagenGuia">
-                    <img src="/imagenesPrincipal/borradores.png" alt="Borradores">
+                    <img src="borrador.png" alt="Borradores">
                 </div>
             </div>
 
@@ -333,7 +417,7 @@
                     </p>
                 </div>
                 <div class="imagenGuia">
-                    <img src="/imagenesPrincipal/pendientes.png" alt="Reportes pendientes">
+                    <img src="buscar-reporte.png" alt="Reportes pendientes">
                 </div>
             </div>
 
@@ -346,34 +430,27 @@
                     </p>
                 </div>
                 <div class="imagenGuia">
-                    <img src="/imagenesPrincipal/agregar-usuarios.png" alt="Agregar usuarios">
+                    <img src="agregarusuario.png" alt="Agregar usuarios">
                 </div>
             </div>
         </div>
     </div>
 
-    <!--IMPRIMIR REPORTE-->
-<div id="imprimirReporte" class="ventanaImprimirReporte">
-    <div class="contenidoImprimirReporte">
-        <h2>¿Estás seguro de que deseas imprimir el Reporte?</h2>
-        <div class="botones">
-            <button id="btnConfirmarImpresion" class="confirmar">Sí, imprimir</button>
-            <button id="btnCancelarImpresion" class="cancelar">Cancelar</button>
+    <!--CERRAR SESION-->
+<div id="cerrarSesion" class="ventanaCerrarSesion">
+    <div class="contenidoCerrarSesion">
+        <h2>¿Deseas cerrar sesión?</h2>
+        <p>Regresarás al menú de inicio de sesión</p>
+        <div class="cs-botones">
+            <button id="btnConfirmarCerrar" class="cs-confirmar">
+                <span class="front">Sí, cerrar sesión</span>
+            </button>
+            <button id="btnCancelarCerrar" class="cs-cancelar">
+                <span class="front">Cancelar</span>
+            </button>
         </div>
     </div>
 </div>
-
-    <!--CERRAR SESION-->
-    <div id="cerrarSesion" class="ventanaCerrarSesion">
-        <div class="contenidoCerrarSesion">
-            <h2>¿Deseas cerrar sesión?</h2>
-            <p>Regresaras al menu de inicio de sesion.</p>
-            <div class="botones">
-                <button id="btnConfirmarCerrar" class="confirmar">Sí, cerrar sesión</button>
-                <button id="btnCancelarCerrar" class="cancelar">Cancelar</button>
-            </div>
-        </div>
-    </div>
 
     <!-- BUSCAR REPORTES -->
     <div id="buscarReporte" class="seccion">
@@ -470,7 +547,5 @@
             </div>
         </div>
     </div>
-
-    <script src="principal.js"></script>
 </body>
 </html>

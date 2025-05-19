@@ -1,54 +1,26 @@
-// Espera a que el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', function() {
+document.querySelector("form").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
 
-    // Asigna el evento al botón de mostrar contraseña
-    const eyeIcon = document.querySelector('.mostrarContraseña');
-    if (eyeIcon) {
-        eyeIcon.addEventListener('click', mostrarContraseña);
-    }
+    const usuario = document.getElementById("usuario").value;
+    const contra = document.getElementById("contra").value;
 
-    // Manejo del formulario
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('usuario').value;
-            const password = document.getElementById('contra').value;
-            const errorMessage = document.getElementById('error-message');
-            
-            errorMessage.textContent = '';
-            errorMessage.style.display = 'none';
-            
-            try {
-                const response = await fetch('/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 
-                        username: username, 
-                        password: password 
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    window.location.href = '/principal';
-                } else {
-                    errorMessage.textContent = data.message || 'Usuario o contraseña incorrectos';
-                    errorMessage.style.display = 'block';
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                errorMessage.textContent = 'Error al conectar con el servidor';
-                errorMessage.style.display = 'block';
-            }
-        });
+    const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ usuario, contra }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+        alert("¡Bienvenido!");
+        window.location.href = 'index.html'; // Redirigir a la página principal
+    } else {
+        alert(result.message);
     }
 });
-
 
 function mostrarContraseña() {
     const contra = document.getElementById("contra");
@@ -56,9 +28,9 @@ function mostrarContraseña() {
 
     if (contra.type === "password") {
         contra.type = "text";
-        cambiar.src = "/imagenesLogin/ojo.png";
+        cambiar.src = "ojo.png"; // Imagen cuando la contraseña es visible
     } else {
         contra.type = "password";
-        cambiar.src = "/imagenesLogin/ojoInvisible.png";
+        cambiar.src = "ojoInvisible.png"; // Imagen cuando la contraseña está oculta
     }
 }
